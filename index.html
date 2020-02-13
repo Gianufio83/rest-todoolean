@@ -23,9 +23,13 @@
 
 
   <script id="list-template" type="text/x-handlebars-template">
-  <li class="todo">
+  <li class="todo" data-id="{{id}}">
     {{text}}
+    <span class="delete">
+    X
+    </span>
   </li>
+
   </script>
 
   <script src="js/script.js" charset="utf-8"></script>

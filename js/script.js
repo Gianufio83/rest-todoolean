@@ -6,7 +6,12 @@ $('#button').click(function () {
   var value = $('#input').val();
   createNewToDo(value);
 });
-
+$(document).on('click', '.delete', function () {
+  var buttonDelete = $(this);
+  var idDeleteTodo = buttonDelete.parent().attr('data-id');
+  console.log(idDeleteTodo);
+  toDoDelete(idDeleteTodo);
+});
 
 });
 
@@ -28,7 +33,8 @@ function getAllList() {
     for (var i = 0; i < list.length; i++) {
        var todo = list[i];
        var context = {
-         text: todo.text
+         text: todo.text,
+         id : todo.id
        }
     var html = template(context);
       $('.lists').append(html);
@@ -39,7 +45,7 @@ function getAllList() {
     }
   });
 }
-// Function - POST
+// Function -POST
 function createNewToDo(input) {
   $.ajax({
     url: 'http://157.230.17.132:3016/todos',
@@ -48,13 +54,25 @@ function createNewToDo(input) {
       text: input
     },
     success: function (data) {
-      $('.lists').html('');
+      $('ol.lists').html('');
       getAllList();
     },
     error: function () {
       alert('Errore');
     }
   });
-
-
+}
+// Function -DELETE
+function toDoDelete(id) {
+  $.ajax({
+    url: 'http://157.230.17.132:3016/todos/' + id,
+    method: 'DELETE',
+    success: function (data) {
+      $('ol.lists').html('');
+      getAllList();
+    },
+    error: function () {
+      alert('Errore');
+    }
+  });
 }
