@@ -1,6 +1,13 @@
 // alert('Ciao');
 $(document).ready(function () {
   getAllList();
+
+$('#button').click(function () {
+  var value = $('#input').val();
+  createNewToDo(value);
+});
+
+
 });
 
 
@@ -31,4 +38,23 @@ function getAllList() {
       alert('Errore');
     }
   });
+}
+// Function - POST
+function createNewToDo(value) {
+  $.ajax({
+    url: 'http://157.230.17.132:3016/todos',
+    method: 'POST',
+    data : {
+      text: value
+    },
+    success: function (data) {
+      $('.lists').html('');
+      getAllList();
+    },
+    error: function () {
+      alert('Errore');
+    }
+  });
+
+
 }
