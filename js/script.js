@@ -40,12 +40,12 @@ function getAllList() {
   });
 }
 // Function - POST
-function createNewToDo(value) {
+function createNewToDo(input) {
   $.ajax({
     url: 'http://157.230.17.132:3016/todos',
     method: 'POST',
     data : {
-      text: value
+      text: input
     },
     success: function (data) {
       $('.lists').html('');
