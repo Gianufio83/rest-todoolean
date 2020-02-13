@@ -19,6 +19,8 @@ $(document).on('click', '#open', function () {
 $(document).on('click', '#update-button', function () {
   var attr = $(this).parent('.todo').children('#update').val();
   var id = $(this).parent('.todo').attr('data-id');
+  console.log(attr, id);
+
   update(id, attr);
 
 });
@@ -93,8 +95,8 @@ function toDoDelete(id) {
 // Function -UPDATE
 function update(id, value) {
   $.ajax({
-    url: 'http://157.230.17.132:3016/todos' + id,
-    method: 'PUT',
+    url: 'http://157.230.17.132:3016/todos/' + id,
+    method: 'PaTCH',
     data : {
       text: value
     },
