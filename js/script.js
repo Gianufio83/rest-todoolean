@@ -12,14 +12,14 @@ $(document).on('click', '.delete', function () {
   console.log(idDeleteTodo);
   toDoDelete(idDeleteTodo);
 });
-$(document).on('click', '.update-button', function () {
-  // $('#update').disabled = false;
-  var thisElement = $(this);
-  var input = thisElement.find('#update');
-  console.log(input);
+$(document).on('click', '#open', function () {
+  $(this).parent('.todo').children('#update').removeAttr('disabled');
+});
 
-  // getEnable(input);
-
+$(document).on('click', '#update-button', function () {
+  var attr = $(this).parent('.todo').children('#update').val();
+  var id = $(this).parent('.todo').attr('data-id');
+  update(id, attr);
 
 });
 
@@ -91,9 +91,21 @@ function toDoDelete(id) {
 
 
 // Function -UPDATE
-// function getEnable(input) {
-//
-//    }
-//
-//
-// }
+function update(id, value) {
+  $.ajax({
+    url: 'http://157.230.17.132:3016/todos' + id,
+    method: 'PUT',
+    data : {
+      text: value
+    },
+    success: function (data) {
+      $('ol.lists').html('');
+      $('#input').val('');
+      getAllList();
+    },
+    error: function () {
+      alert('Errore');
+    }
+
+  });
+}
