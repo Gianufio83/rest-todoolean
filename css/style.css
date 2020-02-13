@@ -14,17 +14,20 @@ padding: 5px;
 .todo {
   height: 40px;
   margin: 40px;
-  background-color: orange;
+  background-color: grey;
   position: relative;
   font-weight: bold;
   font-size: 14px;
+
 }
-/* .todo li {
-  font-weight: bold;
-  font-size: 14px;
-} */
 .delete {
   position: absolute;
   top:0;
   right: 20px;
 }
+/* #update {
+  height: 40px;
+  width: 100%;
+  border: 1px solid grey;
+  background-color: grey;
+} */

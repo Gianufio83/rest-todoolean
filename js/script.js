@@ -12,6 +12,16 @@ $(document).on('click', '.delete', function () {
   console.log(idDeleteTodo);
   toDoDelete(idDeleteTodo);
 });
+$(document).on('click', '.update-button', function () {
+  // $('#update').disabled = false;
+  var thisElement = $(this);
+  var input = thisElement.find('#update');
+  console.log(input);
+
+  // getEnable(input);
+
+
+});
 
 });
 
@@ -55,6 +65,7 @@ function createNewToDo(input) {
     },
     success: function (data) {
       $('ol.lists').html('');
+      $('#input').val('');
       getAllList();
     },
     error: function () {
@@ -69,6 +80,7 @@ function toDoDelete(id) {
     method: 'DELETE',
     success: function (data) {
       $('ol.lists').html('');
+      $('#input').val('');
       getAllList();
     },
     error: function () {
@@ -76,3 +88,12 @@ function toDoDelete(id) {
     }
   });
 }
+
+
+// Function -UPDATE
+// function getEnable(input) {
+//
+//    }
+//
+//
+// }
